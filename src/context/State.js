@@ -3,14 +3,15 @@ import Context from './Context'
 import { GET_FOODLIST, SET_LOADING, SET_ERROR } from './Types'
 import reducer from './Reducer'
 
-let app_id
-let api_key
+let recipehuntAppId;
+let recipehuntAPIKey
+
 if (process.env.NODE_ENV !== 'production') {
-  app_id = process.env.REACT_APP_API_ID;
-  api_key = process.env.REACT_APP_API_KEY
+  recipehuntAppId = process.env.REACT_APP_RECIPEHUNT_APP_ID;
+  recipehuntAPIKey = process.env.REACT_APP_RECIPEHUNT_API_KEY
 } else {
-  app_id = process.env.API_ID;
-  api_key = process.env.API_KEY
+  app_id = process.env.RECIPEHUNT_APP_ID;
+  api_key = process.env.RECIPEHUNT_API_KEY
 }
 
 function State(props) {
@@ -25,7 +26,7 @@ function State(props) {
     dispatch({
       type: SET_LOADING
     })
-    const url = `https://api.edamam.com/search?q=${foodname}&app_id=${app_id}&app_key=${api_key}&from=0&to=30`
+    const url = `https://api.edamam.com/search?q=${foodname}&app_id=${recipehuntAppId}&app_key=${recipehuntAPIKey}&from=0&to=30`
     try {
       const res = await fetch(url)
       const data = await res.json()
